@@ -32,14 +32,12 @@ namespace ToolReadExcel
                     int colCount = worksheet.Dimension.Columns;
 
                     // Đọc dữ liệu từ từng ô trong Sheet
-                    for (int row = 1; row <= rowCount; row++)
+                    for (int row = 2; row <= rowCount; row++)
                     {
-                        for (int col = 1; col <= colCount; col++)
-                        {
-                            // Lấy giá trị từ ô tại vị trí (row, col)
-                            object cellValue = worksheet.Cells[row, col].Value;
-                            // Xử lý giá trị từ ô tại vị trí (row, col)
-                        }
+                        // Lấy giá trị từ ô tại vị trí (row, col)
+                        var cellValueCMDCD = worksheet.Cells[row, 1].Value;
+                        var cellValue = worksheet.Cells[row, 10].Value;
+                        // Xử lý giá trị từ ô tại vị trí (row, col)
                     }
                 }
             }
