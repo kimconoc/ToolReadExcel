@@ -37,9 +37,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.tetNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtCmdcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtMdkikaku = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtUpdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CATEGCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SETCMDCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CUSTCD1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KORMKS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,9 +81,10 @@
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tetNo,
-            this.txtCmdcd,
-            this.txtMdkikaku,
-            this.txtUpdt});
+            this.CATEGCD,
+            this.SETCMDCD,
+            this.CUSTCD1,
+            this.KORMKS});
             resources.ApplyResources(this.dataGridView, "dataGridView");
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
@@ -95,23 +97,29 @@
             this.tetNo.Name = "tetNo";
             this.tetNo.ReadOnly = true;
             // 
-            // txtCmdcd
+            // CATEGCD
             // 
-            resources.ApplyResources(this.txtCmdcd, "txtCmdcd");
-            this.txtCmdcd.Name = "txtCmdcd";
-            this.txtCmdcd.ReadOnly = true;
+            resources.ApplyResources(this.CATEGCD, "CATEGCD");
+            this.CATEGCD.Name = "CATEGCD";
+            this.CATEGCD.ReadOnly = true;
             // 
-            // txtMdkikaku
+            // SETCMDCD
             // 
-            resources.ApplyResources(this.txtMdkikaku, "txtMdkikaku");
-            this.txtMdkikaku.Name = "txtMdkikaku";
-            this.txtMdkikaku.ReadOnly = true;
+            resources.ApplyResources(this.SETCMDCD, "SETCMDCD");
+            this.SETCMDCD.Name = "SETCMDCD";
+            this.SETCMDCD.ReadOnly = true;
             // 
-            // txtUpdt
+            // CUSTCD1
             // 
-            resources.ApplyResources(this.txtUpdt, "txtUpdt");
-            this.txtUpdt.Name = "txtUpdt";
-            this.txtUpdt.ReadOnly = true;
+            resources.ApplyResources(this.CUSTCD1, "CUSTCD1");
+            this.CUSTCD1.Name = "CUSTCD1";
+            this.CUSTCD1.ReadOnly = true;
+            // 
+            // KORMKS
+            // 
+            resources.ApplyResources(this.KORMKS, "KORMKS");
+            this.KORMKS.Name = "KORMKS";
+            this.KORMKS.ReadOnly = true;
             // 
             // Form1
             // 
@@ -142,8 +150,9 @@
         private Label label3;
         private DataGridView dataGridView;
         private DataGridViewTextBoxColumn tetNo;
-        private DataGridViewTextBoxColumn txtCmdcd;
-        private DataGridViewTextBoxColumn txtMdkikaku;
-        private DataGridViewTextBoxColumn txtUpdt;
+        private DataGridViewTextBoxColumn CATEGCD;
+        private DataGridViewTextBoxColumn SETCMDCD;
+        private DataGridViewTextBoxColumn CUSTCD1;
+        private DataGridViewTextBoxColumn KORMKS;
     }
 }

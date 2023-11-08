@@ -221,32 +221,35 @@
   <data name="tetNo.Width" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
-  <metadata name="txtCmdcd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="CATEGCD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="txtCmdcd.HeaderText" xml:space="preserve">
-    <value>CMDCD</value>
+  <data name="CATEGCD.HeaderText" xml:space="preserve">
+    <value>CATEGCD</value>
   </data>
-  <data name="txtCmdcd.Width" type="System.Int32, mscorlib">
+  <metadata name="SETCMDCD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="SETCMDCD.HeaderText" xml:space="preserve">
+    <value>SETCMDCD</value>
+  </data>
+  <data name="SETCMDCD.Width" type="System.Int32, mscorlib">
     <value>120</value>
   </data>
-  <metadata name="txtMdkikaku.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="CUSTCD1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="txtMdkikaku.HeaderText" xml:space="preserve">
-    <value>MDKIKAKU</value>
+  <data name="CUSTCD1.HeaderText" xml:space="preserve">
+    <value>CUSTCD1</value>
   </data>
-  <data name="txtMdkikaku.Width" type="System.Int32, mscorlib">
-    <value>360</value>
-  </data>
-  <metadata name="txtUpdt.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="KORMKS.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="txtUpdt.HeaderText" xml:space="preserve">
-    <value>UP_DT</value>
+  <data name="KORMKS.HeaderText" xml:space="preserve">
+    <value>KORMKS</value>
   </data>
-  <data name="txtUpdt.Width" type="System.Int32, mscorlib">
-    <value>215</value>
+  <data name="KORMKS.Width" type="System.Int32, mscorlib">
+    <value>375</value>
   </data>
   <data name="dataGridView.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 185</value>
@@ -290,22 +293,28 @@
   <data name="&gt;&gt;tetNo.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtCmdcd.Name" xml:space="preserve">
-    <value>txtCmdcd</value>
+  <data name="&gt;&gt;CATEGCD.Name" xml:space="preserve">
+    <value>CATEGCD</value>
   </data>
-  <data name="&gt;&gt;txtCmdcd.Type" xml:space="preserve">
+  <data name="&gt;&gt;CATEGCD.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtMdkikaku.Name" xml:space="preserve">
-    <value>txtMdkikaku</value>
+  <data name="&gt;&gt;SETCMDCD.Name" xml:space="preserve">
+    <value>SETCMDCD</value>
   </data>
-  <data name="&gt;&gt;txtMdkikaku.Type" xml:space="preserve">
+  <data name="&gt;&gt;SETCMDCD.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtUpdt.Name" xml:space="preserve">
-    <value>txtUpdt</value>
+  <data name="&gt;&gt;CUSTCD1.Name" xml:space="preserve">
+    <value>CUSTCD1</value>
   </data>
-  <data name="&gt;&gt;txtUpdt.Type" xml:space="preserve">
+  <data name="&gt;&gt;CUSTCD1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;KORMKS.Name" xml:space="preserve">
+    <value>KORMKS</value>
+  </data>
+  <data name="&gt;&gt;KORMKS.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

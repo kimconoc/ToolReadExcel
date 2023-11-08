@@ -1,4 +1,5 @@
 ﻿using OfficeOpenXml;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -23,6 +24,14 @@ namespace ToolReadExcel
         private int _count;
         private int _rowCount;
         private int _colCount;
+        List<string> listCategoryNo = new List<string>() 
+        {
+            "100","101","102","103"
+        };
+        List<string> listSetCode = new List<string>()
+        {
+            "2302224","2302226","2302293","2302228","2302238","2302240","2302289","2302291","2302285","2302287"
+        };
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView.Rows.Clear();
@@ -56,32 +65,45 @@ namespace ToolReadExcel
                             _rowCount = worksheet.Dimension.Rows;
                             _colCount = worksheet.Dimension.Columns;
 
+                            List<string> listAGCD1= new List<string>();
                             // Đọc dữ liệu từ từng ô trong Sheet
                             for (int row = 2; row <= _rowCount; row++)
                             {
                                 // Lấy giá trị từ ô tại vị trí (row, col)
-                                var cellValueCMDCD = worksheet.Cells[row, 1].Value?.ToString();
-                                var cellValueMdkikaku = worksheet.Cells[row, 10].Value?.ToString();
-                                // Đoạn mã SQL UPDATE
-                                string sqlUpdate = string.Format("update LSYOHIN_MST set UP_DT = GETDATE(), MDKIKAKU = '{0}' where CMDCD = '{1}'", cellValueMdkikaku, cellValueCMDCD);
-                                // Tạo đối tượng SqlCommand với câu lệnh SQL và kết nối
-                                using (SqlCommand command = new SqlCommand(sqlUpdate, connection))
-                                {
-                                    // Thực thi câu lệnh UPDATE
-                                    command.ExecuteNonQuery();
-                                }
-                                ShowDataGridView(cellValueCMDCD, cellValueMdkikaku);
+                                var cellValueAGCD1 = worksheet.Cells[row, 1].Value?.ToString();
+                                listAGCD1.Add(cellValueAGCD1);  
                             }
+
+                            List<PATTERN_MST> listPATTERN_MST = new List<PATTERN_MST>();
+                            foreach (var category in listCategoryNo)
+                            {
+                                foreach (var setCode in listSetCode)
+                                {
+                                    foreach (var agcd1 in listAGCD1)
+                                    {
+                                        string query = $"select * from PATTERN_MST where CATEGCD = '{category}' and SETCMDCD = '{setCode}' and CUSTCD1 = '{agcd1}'";
+                                        // Thực hiện công việc với câu truy vấn ở đây
+                                        using (SqlCommand command = new SqlCommand(query, connection))
+                                        {
+                                            using (SqlDataReader reader = command.ExecuteReader())
+                                            {
+                                                while (reader.Read())
+                                                {
+                                                    PATTERN_MST pattern_mst = new PATTERN_MST();
+                                                    pattern_mst.CATEGCD = reader["CATEGCD"].ToString();
+                                                    pattern_mst.SETCMDCD = reader["SETCMDCD"].ToString();
+                                                    pattern_mst.CUSTCD1 = reader["CUSTCD1"].ToString();
+                                                    pattern_mst.KORMKS = reader["KORMKS"].ToString();
+                                                    listPATTERN_MST.Add(pattern_mst);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            ShowDataGridView(listPATTERN_MST);
                         }
-                    }
-                    if (_count == _rowCount - 1)
-                    {
-                        scope.Complete();
-                        MessageBox.Show("Update Success!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Update Error!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -97,21 +119,34 @@ namespace ToolReadExcel
                 }
             }
         }
-        private void ShowDataGridView(string? cellValueCMDCD,string? cellValueMdkikaku)
+        private void ShowDataGridView(List<PATTERN_MST> listPATTERN_MST)
         {
-            dataGridView.Invoke(new MethodInvoker(delegate ()
+
+            foreach(var item in listPATTERN_MST)
             {
-                var row = new DataGridView();
-                dataGridView.Rows.Add(row);
-                dataGridView.Rows[_count].Cells[0].Value = _count + 1;
-                dataGridView.Rows[_count].Cells[1].Value = cellValueCMDCD;
-                dataGridView.Rows[_count].Cells[2].Value = cellValueMdkikaku;
-                dataGridView.Rows[_count].Cells[3].Value = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
-                _count++;
-            }));
-            //Điều chỉnh thanh Scroll theo vị trí mong muốn
-            dataGridView.FirstDisplayedScrollingRowIndex = dataGridView.RowCount - 1;
-            Task.Delay(100).Wait();
+                dataGridView.Invoke(new MethodInvoker(delegate ()
+                {
+                    var row = new DataGridView();
+                    dataGridView.Rows.Add(row);
+                    dataGridView.Rows[_count].Cells[0].Value = _count + 1;
+                    dataGridView.Rows[_count].Cells[1].Value = item.CATEGCD;
+                    dataGridView.Rows[_count].Cells[2].Value = item.SETCMDCD;
+                    dataGridView.Rows[_count].Cells[3].Value = item.CUSTCD1; ;
+                    dataGridView.Rows[_count].Cells[4].Value = item.KORMKS; ;
+                    _count++;
+                }));
+                //Điều chỉnh thanh Scroll theo vị trí mong muốn
+                dataGridView.FirstDisplayedScrollingRowIndex = dataGridView.RowCount - 1;
+                //Task.Delay(100).Wait();
+            }    
         }
     }
+
+    public class PATTERN_MST
+    {
+        public string CATEGCD { get; set; }
+        public string SETCMDCD { get; set; }
+        public string CUSTCD1 { get; set; }
+        public string KORMKS { get; set; }
+    }    
 }
