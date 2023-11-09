@@ -34,6 +34,7 @@ namespace ToolReadExcel
             "2302224","2302226","2302293","2302228","2302238","2302240","2302289","2302291","2302285","2302287"
         };
         List<PATTERN_MST> listPATTERN_MST = new List<PATTERN_MST>();
+        private string like_KORMKS = "配送希望日の2日前に出荷する";
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             dataGridView.Rows.Clear();
@@ -92,13 +93,16 @@ namespace ToolReadExcel
                                             {
                                                 while (reader.Read())
                                                 {
-                                                    PATTERN_MST pattern_mst = new PATTERN_MST();
-                                                    pattern_mst.CATEGCD = reader["CATEGCD"].ToString();
-                                                    pattern_mst.SETCMDCD = reader["SETCMDCD"].ToString();
-                                                    pattern_mst.CUSTCD1 = reader["CUSTCD1"].ToString();
-                                                    pattern_mst.AGCD = reader["AGCD"].ToString();
-                                                    pattern_mst.KORMKS = reader["KORMKS"].ToString();
-                                                    listPATTERN_MST.Add(pattern_mst);
+                                                    if (!reader["KORMKS"].ToString().Contains(like_KORMKS))
+                                                    {
+                                                        PATTERN_MST pattern_mst = new PATTERN_MST();
+                                                        pattern_mst.CATEGCD = reader["CATEGCD"].ToString();
+                                                        pattern_mst.SETCMDCD = reader["SETCMDCD"].ToString();
+                                                        pattern_mst.CUSTCD1 = reader["CUSTCD1"].ToString();
+                                                        pattern_mst.AGCD = reader["AGCD"].ToString();
+                                                        pattern_mst.KORMKS = reader["KORMKS"].ToString();
+                                                        listPATTERN_MST.Add(pattern_mst);
+                                                    }    
                                                 }
                                             }
                                         }
@@ -113,7 +117,6 @@ namespace ToolReadExcel
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
                 finally
                 {
