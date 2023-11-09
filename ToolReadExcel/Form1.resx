@@ -242,6 +242,12 @@
   <data name="CUSTCD1.HeaderText" xml:space="preserve">
     <value>CUSTCD1</value>
   </data>
+  <metadata name="AGCD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="AGCD.HeaderText" xml:space="preserve">
+    <value>AGCD</value>
+  </data>
   <metadata name="KORMKS.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -249,7 +255,7 @@
     <value>KORMKS</value>
   </data>
   <data name="KORMKS.Width" type="System.Int32, mscorlib">
-    <value>375</value>
+    <value>275</value>
   </data>
   <data name="dataGridView.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 190</value>
@@ -340,6 +346,12 @@
     <value>CUSTCD1</value>
   </data>
   <data name="&gt;&gt;CUSTCD1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AGCD.Name" xml:space="preserve">
+    <value>AGCD</value>
+  </data>
+  <data name="&gt;&gt;AGCD.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;KORMKS.Name" xml:space="preserve">

@@ -96,6 +96,7 @@ namespace ToolReadExcel
                                                     pattern_mst.CATEGCD = reader["CATEGCD"].ToString();
                                                     pattern_mst.SETCMDCD = reader["SETCMDCD"].ToString();
                                                     pattern_mst.CUSTCD1 = reader["CUSTCD1"].ToString();
+                                                    pattern_mst.AGCD = reader["AGCD"].ToString();
                                                     pattern_mst.KORMKS = reader["KORMKS"].ToString();
                                                     listPATTERN_MST.Add(pattern_mst);
                                                 }
@@ -135,7 +136,8 @@ namespace ToolReadExcel
                     dataGridView.Rows[_count].Cells[1].Value = item.CATEGCD;
                     dataGridView.Rows[_count].Cells[2].Value = item.SETCMDCD;
                     dataGridView.Rows[_count].Cells[3].Value = item.CUSTCD1; ;
-                    dataGridView.Rows[_count].Cells[4].Value = item.KORMKS; ;
+                    dataGridView.Rows[_count].Cells[4].Value = item.CUSTCD1; ;
+                    dataGridView.Rows[_count].Cells[5].Value = item.KORMKS; ;
                     _count++;
                 }));
                 //Điều chỉnh thanh Scroll theo vị trí mong muốn
@@ -178,7 +180,8 @@ namespace ToolReadExcel
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
+
+            btnExport.Enabled = false;
         }
     }
 
@@ -187,6 +190,7 @@ namespace ToolReadExcel
         public string CATEGCD { get; set; }
         public string SETCMDCD { get; set; }
         public string CUSTCD1 { get; set; }
+        public string AGCD { get; set; }
         public string KORMKS { get; set; }
     }    
 }

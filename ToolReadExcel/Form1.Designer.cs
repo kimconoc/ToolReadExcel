@@ -36,12 +36,13 @@
             this.strConnect = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.btnExport = new System.Windows.Forms.Button();
             this.tetNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CATEGCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SETCMDCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CUSTCD1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AGCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KORMKS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,12 +86,21 @@
             this.CATEGCD,
             this.SETCMDCD,
             this.CUSTCD1,
+            this.AGCD,
             this.KORMKS});
             resources.ApplyResources(this.dataGridView, "dataGridView");
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.RowTemplate.Height = 25;
+            // 
+            // btnExport
+            // 
+            this.btnExport.AutoEllipsis = true;
+            resources.ApplyResources(this.btnExport, "btnExport");
+            this.btnExport.Name = "btnExport";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // tetNo
             // 
@@ -116,19 +126,17 @@
             this.CUSTCD1.Name = "CUSTCD1";
             this.CUSTCD1.ReadOnly = true;
             // 
+            // AGCD
+            // 
+            resources.ApplyResources(this.AGCD, "AGCD");
+            this.AGCD.Name = "AGCD";
+            this.AGCD.ReadOnly = true;
+            // 
             // KORMKS
             // 
             resources.ApplyResources(this.KORMKS, "KORMKS");
             this.KORMKS.Name = "KORMKS";
             this.KORMKS.ReadOnly = true;
-            // 
-            // btnExport
-            // 
-            this.btnExport.AutoEllipsis = true;
-            resources.ApplyResources(this.btnExport, "btnExport");
-            this.btnExport.Name = "btnExport";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // Form1
             // 
@@ -159,11 +167,12 @@
         private TextBox strConnect;
         private Label label3;
         private DataGridView dataGridView;
+        private Button btnExport;
         private DataGridViewTextBoxColumn tetNo;
         private DataGridViewTextBoxColumn CATEGCD;
         private DataGridViewTextBoxColumn SETCMDCD;
         private DataGridViewTextBoxColumn CUSTCD1;
+        private DataGridViewTextBoxColumn AGCD;
         private DataGridViewTextBoxColumn KORMKS;
-        private Button btnExport;
     }
 }
