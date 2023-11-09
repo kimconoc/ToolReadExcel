@@ -41,6 +41,7 @@
             this.SETCMDCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CUSTCD1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KORMKS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             resources.ApplyResources(this.btnSubmit, "btnSubmit");
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.button1_Click);
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // label1
             // 
@@ -121,10 +122,19 @@
             this.KORMKS.Name = "KORMKS";
             this.KORMKS.ReadOnly = true;
             // 
+            // btnExport
+            // 
+            this.btnExport.AutoEllipsis = true;
+            resources.ApplyResources(this.btnExport, "btnExport");
+            this.btnExport.Name = "btnExport";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.strConnect);
@@ -154,5 +164,6 @@
         private DataGridViewTextBoxColumn SETCMDCD;
         private DataGridViewTextBoxColumn CUSTCD1;
         private DataGridViewTextBoxColumn KORMKS;
+        private Button btnExport;
     }
 }

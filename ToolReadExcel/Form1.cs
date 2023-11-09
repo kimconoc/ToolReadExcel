@@ -20,6 +20,7 @@ namespace ToolReadExcel
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dataGridView.AllowUserToResizeRows = false;
             dataGridView.AllowUserToResizeColumns = false;
+            btnExport.Enabled = false;
         }
         private int _count;
         private int _rowCount;
@@ -32,12 +33,14 @@ namespace ToolReadExcel
         {
             "2302224","2302226","2302293","2302228","2302238","2302240","2302289","2302291","2302285","2302287"
         };
-        private void button1_Click(object sender, EventArgs e)
+        List<PATTERN_MST> listPATTERN_MST = new List<PATTERN_MST>();
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
             dataGridView.Rows.Clear();
             _count = 0;
             _rowCount = 0;
             btnSubmit.Enabled= false;
+            btnExport.Enabled = false;
             if (string.IsNullOrEmpty(pathExcel.Text) || string.IsNullOrEmpty(strConnect.Text))
             {
                 MessageBox.Show("Empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,7 +77,7 @@ namespace ToolReadExcel
                                 listAGCD1.Add(cellValueAGCD1);  
                             }
 
-                            List<PATTERN_MST> listPATTERN_MST = new List<PATTERN_MST>();
+                            listPATTERN_MST = new List<PATTERN_MST>();
                             foreach (var category in listCategoryNo)
                             {
                                 foreach (var setCode in listSetCode)
@@ -116,12 +119,12 @@ namespace ToolReadExcel
                     // Giải phóng giao dịch 
                     scope.Dispose();
                     btnSubmit.Enabled = true;
+                    btnExport.Enabled = true;
                 }
             }
         }
         private void ShowDataGridView(List<PATTERN_MST> listPATTERN_MST)
         {
-
             foreach(var item in listPATTERN_MST)
             {
                 dataGridView.Invoke(new MethodInvoker(delegate ()
@@ -139,6 +142,43 @@ namespace ToolReadExcel
                 dataGridView.FirstDisplayedScrollingRowIndex = dataGridView.RowCount - 1;
                 //Task.Delay(100).Wait();
             }    
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if(listPATTERN_MST == null || listPATTERN_MST.Count == 0)
+            {
+                return;
+            }    
+            try
+            {
+                string desktopPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Sample.xlsx");
+                var file = new FileInfo(desktopPath);
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using (var package = new ExcelPackage(file))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sample Sheet");
+                    //Vị trí bắt đầu
+                    worksheet.Cells["A1"].LoadFromCollection(listPATTERN_MST, true);
+                    // Thiết lập căn giữa cho phần header
+                    using (var range = worksheet.Cells[1, 1, 1, worksheet.Dimension.Columns])
+                    {
+                        range.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                    }
+                    // Thiết lập căn lề trái cho phần giá trị
+                    using (var range = worksheet.Cells[2, 1, worksheet.Dimension.Rows, worksheet.Dimension.Columns])
+                    {
+                        range.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                    }
+                    package.Save();
+                    MessageBox.Show("Export Excel Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
     }
 
