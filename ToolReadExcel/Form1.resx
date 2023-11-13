@@ -58,39 +58,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnSubmit.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="btnSelectForwardedData.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt</value>
   </data>
-  <data name="btnSubmit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>351, 123</value>
+  <data name="btnSelectForwardedData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 111</value>
   </data>
-  <data name="btnSubmit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 33</value>
+  <data name="btnSelectForwardedData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 33</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnSubmit.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnSelectForwardedData.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="btnSubmit.Text" xml:space="preserve">
-    <value>Submit</value>
+  <data name="btnSelectForwardedData.Text" xml:space="preserve">
+    <value>Select forwarded data </value>
   </data>
-  <data name="&gt;&gt;btnSubmit.Name" xml:space="preserve">
-    <value>btnSubmit</value>
+  <data name="&gt;&gt;btnSelectForwardedData.Name" xml:space="preserve">
+    <value>btnSelectForwardedData</value>
   </data>
-  <data name="&gt;&gt;btnSubmit.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnSelectForwardedData.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnSubmit.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnSelectForwardedData.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnSubmit.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;btnSelectForwardedData.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 51</value>
+    <value>202, 51</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 15</value>
@@ -111,13 +111,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 81</value>
+    <value>202, 81</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 15</value>
@@ -138,10 +138,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <data name="pathExcel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 51</value>
+    <value>293, 48</value>
   </data>
   <data name="pathExcel.Size" type="System.Drawing.Size, System.Drawing">
     <value>647, 23</value>
@@ -159,10 +159,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pathExcel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="strConnect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 81</value>
+    <value>293, 77</value>
   </data>
   <data name="strConnect.Size" type="System.Drawing.Size, System.Drawing">
     <value>647, 23</value>
@@ -180,7 +180,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;strConnect.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -189,16 +189,16 @@
     <value>Segoe UI, 18pt</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 9</value>
+    <value>564, 9</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 32</value>
+    <value>97, 32</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Update DB</value>
+    <value>Tool DB</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -210,64 +210,296 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
-  <metadata name="tetNo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="tetNo.HeaderText" xml:space="preserve">
-    <value>No.</value>
+  <data name="btnExportForwardedData.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
   </data>
-  <data name="tetNo.Width" type="System.Int32, mscorlib">
-    <value>40</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnExportForwardedData.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <metadata name="txtCmdcd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="txtCmdcd.HeaderText" xml:space="preserve">
-    <value>CMDCD</value>
+  <data name="btnExportForwardedData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 147</value>
   </data>
-  <data name="txtCmdcd.Width" type="System.Int32, mscorlib">
-    <value>120</value>
+  <data name="btnExportForwardedData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 33</value>
   </data>
-  <metadata name="txtMdkikaku.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="txtMdkikaku.HeaderText" xml:space="preserve">
-    <value>MDKIKAKU</value>
+  <data name="btnExportForwardedData.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="txtMdkikaku.Width" type="System.Int32, mscorlib">
-    <value>360</value>
+  <data name="btnExportForwardedData.Text" xml:space="preserve">
+    <value>Export forwarded data </value>
   </data>
-  <metadata name="txtUpdt.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="txtUpdt.HeaderText" xml:space="preserve">
-    <value>UP_DT</value>
+  <data name="&gt;&gt;btnExportForwardedData.Name" xml:space="preserve">
+    <value>btnExportForwardedData</value>
   </data>
-  <data name="txtUpdt.Width" type="System.Int32, mscorlib">
-    <value>215</value>
+  <data name="&gt;&gt;btnExportForwardedData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="dataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 185</value>
-  </data>
-  <data name="dataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 347</value>
-  </data>
-  <data name="dataGridView.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;dataGridView.Name" xml:space="preserve">
-    <value>dataGridView</value>
-  </data>
-  <data name="&gt;&gt;dataGridView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnExportForwardedData.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;dataGridView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnExportForwardedData.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnExportDeleteData.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="btnExportDeleteData.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnExportDeleteData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>812, 147</value>
+  </data>
+  <data name="btnExportDeleteData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 33</value>
+  </data>
+  <data name="btnExportDeleteData.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnExportDeleteData.Text" xml:space="preserve">
+    <value>Export data delete</value>
+  </data>
+  <data name="&gt;&gt;btnExportDeleteData.Name" xml:space="preserve">
+    <value>btnExportDeleteData</value>
+  </data>
+  <data name="&gt;&gt;btnExportDeleteData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnExportDeleteData.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnExportDeleteData.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnSelectDeleteData.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="btnSelectDeleteData.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSelectDeleteData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>812, 111</value>
+  </data>
+  <data name="btnSelectDeleteData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 33</value>
+  </data>
+  <data name="btnSelectDeleteData.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnSelectDeleteData.Text" xml:space="preserve">
+    <value>Select data delete</value>
+  </data>
+  <data name="&gt;&gt;btnSelectDeleteData.Name" xml:space="preserve">
+    <value>btnSelectDeleteData</value>
+  </data>
+  <data name="&gt;&gt;btnSelectDeleteData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSelectDeleteData.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSelectDeleteData.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="dataGridViewTextBoxColumn1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dataGridViewTextBoxColumn1.HeaderText" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="dataGridViewTextBoxColumn1.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column1.HeaderText" xml:space="preserve">
+    <value>Column1</value>
+  </data>
+  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column2.HeaderText" xml:space="preserve">
+    <value>Column2</value>
+  </data>
+  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>Column3</value>
+  </data>
+  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>Column4</value>
+  </data>
+  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>Column5</value>
+  </data>
+  <metadata name="Column6.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>Column6</value>
+  </data>
+  <metadata name="Column7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>Column7</value>
+  </data>
+  <metadata name="Column8.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>Column8</value>
+  </data>
+  <metadata name="Column9.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>Column9</value>
+  </data>
+  <data name="dataGridView2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>616, 185</value>
+  </data>
+  <data name="dataGridView2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>568, 347</value>
+  </data>
+  <data name="dataGridView2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.Name" xml:space="preserve">
+    <value>dataGridView2</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dataGridView2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="stt.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="stt.HeaderText" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="stt.Width" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <metadata name="cRTDT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="cRTDT.HeaderText" xml:space="preserve">
+    <value>CRTDT</value>
+  </data>
+  <metadata name="cMDCD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="cMDCD.HeaderText" xml:space="preserve">
+    <value>CMDCD</value>
+  </data>
+  <metadata name="lOTNO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lOTNO.HeaderText" xml:space="preserve">
+    <value>LOTNO</value>
+  </data>
+  <metadata name="lIFTM.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lIFTM.HeaderText" xml:space="preserve">
+    <value>LIFTM</value>
+  </data>
+  <metadata name="dIRPGNO.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dIRPGNO.HeaderText" xml:space="preserve">
+    <value>DIRPGNO</value>
+  </data>
+  <metadata name="mKDT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="mKDT.HeaderText" xml:space="preserve">
+    <value>MKDT</value>
+  </data>
+  <metadata name="mKCNT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="mKCNT.HeaderText" xml:space="preserve">
+    <value>MKCNT</value>
+  </data>
+  <metadata name="sTOCD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="sTOCD.HeaderText" xml:space="preserve">
+    <value>STOCD</value>
+  </data>
+  <metadata name="mODQUA.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="mODQUA.HeaderText" xml:space="preserve">
+    <value>MODQUA</value>
+  </data>
+  <metadata name="mODKND.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="mODKND.HeaderText" xml:space="preserve">
+    <value>MODKND</value>
+  </data>
+  <metadata name="mODRSN.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="mODRSN.HeaderText" xml:space="preserve">
+    <value>MODRSN</value>
+  </data>
+  <metadata name="sTOTP.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="sTOTP.HeaderText" xml:space="preserve">
+    <value>STOTP</value>
+  </data>
+  <metadata name="APPDT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="APPDT.HeaderText" xml:space="preserve">
+    <value>APPDT</value>
+  </data>
+  <metadata name="pROKND.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="pROKND.HeaderText" xml:space="preserve">
+    <value>PROKND</value>
+  </data>
+  <data name="dataGridView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 185</value>
+  </data>
+  <data name="dataGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>568, 347</value>
+  </data>
+  <data name="dataGridView1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;dataGridView1.Name" xml:space="preserve">
+    <value>dataGridView1</value>
+  </data>
+  <data name="&gt;&gt;dataGridView1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridView1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dataGridView1.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -279,33 +511,159 @@
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>807, 544</value>
+    <value>1207, 544</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Update DB</value>
   </data>
-  <data name="&gt;&gt;tetNo.Name" xml:space="preserve">
-    <value>tetNo</value>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn1</value>
   </data>
-  <data name="&gt;&gt;tetNo.Type" xml:space="preserve">
+  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtCmdcd.Name" xml:space="preserve">
-    <value>txtCmdcd</value>
+  <data name="&gt;&gt;Column1.Name" xml:space="preserve">
+    <value>Column1</value>
   </data>
-  <data name="&gt;&gt;txtCmdcd.Type" xml:space="preserve">
+  <data name="&gt;&gt;Column1.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtMdkikaku.Name" xml:space="preserve">
-    <value>txtMdkikaku</value>
+  <data name="&gt;&gt;Column2.Name" xml:space="preserve">
+    <value>Column2</value>
   </data>
-  <data name="&gt;&gt;txtMdkikaku.Type" xml:space="preserve">
+  <data name="&gt;&gt;Column2.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtUpdt.Name" xml:space="preserve">
-    <value>txtUpdt</value>
+  <data name="&gt;&gt;Column3.Name" xml:space="preserve">
+    <value>Column3</value>
   </data>
-  <data name="&gt;&gt;txtUpdt.Type" xml:space="preserve">
+  <data name="&gt;&gt;Column3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column4.Name" xml:space="preserve">
+    <value>Column4</value>
+  </data>
+  <data name="&gt;&gt;Column4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column5.Name" xml:space="preserve">
+    <value>Column5</value>
+  </data>
+  <data name="&gt;&gt;Column5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column6.Name" xml:space="preserve">
+    <value>Column6</value>
+  </data>
+  <data name="&gt;&gt;Column6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column7.Name" xml:space="preserve">
+    <value>Column7</value>
+  </data>
+  <data name="&gt;&gt;Column7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column8.Name" xml:space="preserve">
+    <value>Column8</value>
+  </data>
+  <data name="&gt;&gt;Column8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column9.Name" xml:space="preserve">
+    <value>Column9</value>
+  </data>
+  <data name="&gt;&gt;Column9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;stt.Name" xml:space="preserve">
+    <value>stt</value>
+  </data>
+  <data name="&gt;&gt;stt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cRTDT.Name" xml:space="preserve">
+    <value>cRTDT</value>
+  </data>
+  <data name="&gt;&gt;cRTDT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cMDCD.Name" xml:space="preserve">
+    <value>cMDCD</value>
+  </data>
+  <data name="&gt;&gt;cMDCD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lOTNO.Name" xml:space="preserve">
+    <value>lOTNO</value>
+  </data>
+  <data name="&gt;&gt;lOTNO.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lIFTM.Name" xml:space="preserve">
+    <value>lIFTM</value>
+  </data>
+  <data name="&gt;&gt;lIFTM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dIRPGNO.Name" xml:space="preserve">
+    <value>dIRPGNO</value>
+  </data>
+  <data name="&gt;&gt;dIRPGNO.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mKDT.Name" xml:space="preserve">
+    <value>mKDT</value>
+  </data>
+  <data name="&gt;&gt;mKDT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mKCNT.Name" xml:space="preserve">
+    <value>mKCNT</value>
+  </data>
+  <data name="&gt;&gt;mKCNT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sTOCD.Name" xml:space="preserve">
+    <value>sTOCD</value>
+  </data>
+  <data name="&gt;&gt;sTOCD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mODQUA.Name" xml:space="preserve">
+    <value>mODQUA</value>
+  </data>
+  <data name="&gt;&gt;mODQUA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mODKND.Name" xml:space="preserve">
+    <value>mODKND</value>
+  </data>
+  <data name="&gt;&gt;mODKND.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mODRSN.Name" xml:space="preserve">
+    <value>mODRSN</value>
+  </data>
+  <data name="&gt;&gt;mODRSN.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sTOTP.Name" xml:space="preserve">
+    <value>sTOTP</value>
+  </data>
+  <data name="&gt;&gt;sTOTP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;APPDT.Name" xml:space="preserve">
+    <value>APPDT</value>
+  </data>
+  <data name="&gt;&gt;APPDT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pROKND.Name" xml:space="preserve">
+    <value>pROKND</value>
+  </data>
+  <data name="&gt;&gt;pROKND.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
