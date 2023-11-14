@@ -104,7 +104,7 @@ namespace ToolReadExcel
                 A.CRTDT = CONVERT (DATETIME, 'yyyy-MM-dd HH:mm:ss') 
         ";
 
-        private List<string> listCRTDT = new List<string>();
+        private List<CRTDTExcel> listCRTDTExcel = new List<CRTDTExcel>();
         private List<ZAIKO_PRO> listZAIKO_PRO = new List<ZAIKO_PRO>();
 
         // Sử dụng chuỗi sqlQuery trong câu lệnh truy vấn đến cơ sở dữ liệu.
@@ -112,7 +112,7 @@ namespace ToolReadExcel
         private void btnExecuteForwardedData_Click(object sender, EventArgs e)
         {
             strConnect.Text = "Data Source=V002345\\MSSQLSERVER01;Initial Catalog=ncpc;User ID=sa;Password=ad1234567@;Connect Timeout=30;Pooling=False;";
-            pathExcel.Text = "C:\\Users\\duc.phamvan\\Desktop\\KANRI-96\\【一括処理】廃棄A999リスト(20220907更新)_update_20221226.xlsx";
+            pathExcel.Text = "C:\\Users\\duc.phamvan\\Desktop\\KANRI-96\\QUANNTExecute.xlsx";
             if (string.IsNullOrEmpty(strConnect.Text))
             {
                 MessageBox.Show("Empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -123,7 +123,7 @@ namespace ToolReadExcel
             {
                 try
                 {
-                    listCRTDT = new List<string>();
+                    listCRTDTExcel = new List<CRTDTExcel>();
                     listZAIKO_PRO = new List<ZAIKO_PRO>();
                     string connectionString = strConnect.Text;
                     string filePath = pathExcel.Text;
@@ -139,14 +139,30 @@ namespace ToolReadExcel
                             {
                                 while (reader.Read())
                                 {
-                                    listCRTDT.Add(reader["CRTDT"].ToString());
+                                    CRTDTExcel cRTDTExcel = new CRTDTExcel();
+                                    cRTDTExcel.CRTDT = reader["CRTDT"].ToString();
+                                    listCRTDTExcel.Add(cRTDTExcel);
                                 }
                             }
                         }
-
-                        foreach(string crtdt in listCRTDT)
+                        // Thực hiện công việc với đọc excel lấy list QUANNTExecute
+                        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                        using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
                         {
-                            string strSqlQuery = sqlQuery2.Replace("yyyy-MM-dd HH:mm:ss", crtdt);
+                            ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                            int rowCount = worksheet.Dimension.Rows;
+                            int colCount = worksheet.Dimension.Columns;
+
+                            for (int row = 2; row <= rowCount; row++)
+                            {
+                                int cellQUANNTExecute = int.Parse(worksheet.Cells[row, 5].Value?.ToString());
+                                listCRTDTExcel[row - 2].QUANNTExecute = cellQUANNTExecute;
+                            }
+                        }
+
+                        foreach (var crtdt in listCRTDTExcel)
+                        {
+                            string strSqlQuery = sqlQuery2.Replace("yyyy-MM-dd HH:mm:ss", crtdt.CRTDT);
                             // Thực hiện công việc với câu truy vấn lấy list ZAIKO_PRO
                             using (SqlCommand command = new SqlCommand(strSqlQuery, connection))
                             {
@@ -180,6 +196,7 @@ namespace ToolReadExcel
                         }
                         connection.Dispose();
                     }
+                    scope.Complete();
                 }
                 catch (Exception ex)
                 {
@@ -194,6 +211,11 @@ namespace ToolReadExcel
             }
         }
 
+        public class CRTDTExcel
+        {
+            public string CRTDT { get; set; }
+            public int QUANNTExecute { get; set; }
+        }
         public class ZAIKO_PRO
         {
             public string INS_PS { get; set; }
