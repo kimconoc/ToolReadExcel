@@ -14,19 +14,6 @@ namespace ToolReadExcel
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.MediumAquamarine;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            //
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.MediumAquamarine;
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            dataGridView2.AllowUserToResizeRows = false;
-            dataGridView2.AllowUserToResizeColumns = false;
         }
         private string sqlQuery = @"
             SELECT          
@@ -122,10 +109,10 @@ namespace ToolReadExcel
 
         // Sử dụng chuỗi sqlQuery trong câu lệnh truy vấn đến cơ sở dữ liệu.
 
-        private void btnSelectForwardedData_Click(object sender, EventArgs e)
+        private void btnExecuteForwardedData_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
             strConnect.Text = "Data Source=V002345\\MSSQLSERVER01;Initial Catalog=ncpc;User ID=sa;Password=ad1234567@;Connect Timeout=30;Pooling=False;";
+            pathExcel.Text = "C:\\Users\\duc.phamvan\\Desktop\\KANRI-96\\【一括処理】廃棄A999リスト(20220907更新)_update_20221226.xlsx";
             if (string.IsNullOrEmpty(strConnect.Text))
             {
                 MessageBox.Show("Empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -191,7 +178,7 @@ namespace ToolReadExcel
                                 }
                             }
                         }
-                        ShowDataGridView1(listZAIKO_PRO);
+                        connection.Dispose();
                     }
                 }
                 catch (Exception ex)
@@ -204,40 +191,6 @@ namespace ToolReadExcel
                     // Giải phóng giao dịch 
                     scope.Dispose();
                 }
-            }
-        }
-        private void ShowDataGridView1(List<ZAIKO_PRO> listZAIKO_PRO)
-        {
-            if (listZAIKO_PRO == null || listZAIKO_PRO.Count == 0)
-                return;
-
-            int count = 0;
-            foreach (var item in listZAIKO_PRO)
-            {
-                dataGridView1.Invoke(new MethodInvoker(delegate ()
-                {
-                    var row = new DataGridView();
-                    dataGridView1.Rows.Add(row);
-                    dataGridView1.Rows[count].Cells[0].Value = count + 1;
-                    dataGridView1.Rows[count].Cells[1].Value = item.CRTDT;
-                    dataGridView1.Rows[count].Cells[2].Value = item.CMDCD;
-                    dataGridView1.Rows[count].Cells[3].Value = item.LOTNO; 
-                    dataGridView1.Rows[count].Cells[4].Value = item.LIFTM; 
-                    dataGridView1.Rows[count].Cells[5].Value = item.DIRPGNO; 
-                    dataGridView1.Rows[count].Cells[6].Value = item.MKDT;
-                    dataGridView1.Rows[count].Cells[7].Value = item.MKCNT;
-                    dataGridView1.Rows[count].Cells[8].Value = item.STOCD;
-                    dataGridView1.Rows[count].Cells[9].Value = item.MODQUA; 
-                    dataGridView1.Rows[count].Cells[10].Value = item.MODKND; 
-                    dataGridView1.Rows[count].Cells[11].Value = item.MODRSN;
-                    dataGridView1.Rows[count].Cells[12].Value = item.STOTP;
-                    dataGridView1.Rows[count].Cells[13].Value = item.APPDT;
-                    dataGridView1.Rows[count].Cells[14].Value = item.PROKND;
-                    count++;
-                }));
-                //Điều chỉnh thanh Scroll theo vị trí mong muốn
-                dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
-                //Task.Delay(100).Wait();
             }
         }
 
