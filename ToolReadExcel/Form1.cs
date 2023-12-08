@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Threading;
 using System.Transactions;
 using System.Windows.Forms;
 using static System.Formats.Asn1.AsnWriter;
+using static ToolReadExcel.Form1;
 
 namespace ToolReadExcel
 {
@@ -15,7 +17,10 @@ namespace ToolReadExcel
         {
             InitializeComponent();
         }
-        private string sqlQuery = @"
+
+        #region  Phần chung
+
+        private string sqlQueryGetSpreaData = @"
             SELECT          
             CONVERT(VARCHAR(19), A.CRTDT, 20) as CRTDT,         
             A.CMDCD,         
@@ -84,7 +89,14 @@ namespace ToolReadExcel
             ORDER BY A.CMDCD, A.MKDT, A.LOTNO, A.STOCD, A.CRTDT
         ";
 
-        string sqlQuery2 = @"
+        string sqlQuerySETLOCKTIMEOUT = @"
+            SET LOCK_TIMEOUT 0
+            SELECT CONVERT(VARCHAR(19), UP_DT , 20) 
+            FROM ZAIKO_PRO WITH (UPDLOCK) 
+            WHERE CRTDT = CONVERT(DATETIME, 'yyyy-MM-dd HH:mm:ss')
+        ";
+
+        string sqlQueryGetZAIKOPROByCRTDT = @"
             SELECT 
                 CONVERT(VARCHAR(10), A.CRTDT, 111) + ' ' + CONVERT(VARCHAR(8), A.CRTDT, 8) CRTDT, 
                 A.CMDCD, C.CMDNMK, A.DIRPGNO, A.LOTNO, 
@@ -105,9 +117,10 @@ namespace ToolReadExcel
         ";
 
         private List<CRTDTExcel> listCRTDTExcel = new List<CRTDTExcel>();
-        private List<ZAIKO_PRO> listZAIKO_PRO = new List<ZAIKO_PRO>();
+        private List<ZAIKO_PROEQual> listZAIKO_PROEQual = new List<ZAIKO_PROEQual>();
+        private List<ZAIKO_PROELess> listZAIKO_PROELess = new List<ZAIKO_PROELess>();
 
-        // Sử dụng chuỗi sqlQuery trong câu lệnh truy vấn đến cơ sở dữ liệu.
+        #endregion
 
         private void btnExecuteForwardedData_Click(object sender, EventArgs e)
         {
@@ -124,7 +137,8 @@ namespace ToolReadExcel
                 try
                 {
                     listCRTDTExcel = new List<CRTDTExcel>();
-                    listZAIKO_PRO = new List<ZAIKO_PRO>();
+                    listZAIKO_PROEQual = new List<ZAIKO_PROEQual>();
+                    listZAIKO_PROELess = new List<ZAIKO_PROELess>();
                     string connectionString = strConnect.Text;
                     string filePath = pathExcel.Text;
                     // Tạo đối tượng SqlConnection
@@ -133,7 +147,7 @@ namespace ToolReadExcel
                         // Mở kết nối
                         connection.Open();
                         // Thực hiện công việc với câu truy vấn lấy list CRTDT
-                        using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+                        using (SqlCommand command = new SqlCommand(sqlQueryGetSpreaData, connection))
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
@@ -162,39 +176,210 @@ namespace ToolReadExcel
 
                         foreach (var crtdt in listCRTDTExcel)
                         {
-                            string strSqlQuery = sqlQuery2.Replace("yyyy-MM-dd HH:mm:ss", crtdt.CRTDT);
+                            string strSqlQueryGetZAIKOPROByCRTDT = sqlQueryGetZAIKOPROByCRTDT.Replace("yyyy-MM-dd HH:mm:ss", crtdt.CRTDT);
                             // Thực hiện công việc với câu truy vấn lấy list ZAIKO_PRO
-                            using (SqlCommand command = new SqlCommand(strSqlQuery, connection))
+                            using (SqlCommand command = new SqlCommand(strSqlQueryGetZAIKOPROByCRTDT, connection))
                             {
                                 using (SqlDataReader reader = command.ExecuteReader())
                                 {
                                     while (reader.Read())
                                     {
-                                        ZAIKO_PRO zAIKO_PRO = new ZAIKO_PRO();
-                                        zAIKO_PRO.INS_PS = "ZAIKO300";
-                                        zAIKO_PRO.UP_PS = "ZAIKO300";
-                                        zAIKO_PRO.INS_HST = "ZAIKO300";
-                                        zAIKO_PRO.UP_HST = "ZAIKO300";
-                                        zAIKO_PRO.CRTDT = reader["CRTDT"].ToString();
-                                        zAIKO_PRO.CMDCD = reader["CMDCD"].ToString();
-                                        zAIKO_PRO.LOTNO = reader["LOTNO"].ToString();
-                                        zAIKO_PRO.LIFTM = reader["LIFTM"].ToString();
-                                        zAIKO_PRO.DIRPGNO = reader["DIRPGNO"].ToString();
-                                        zAIKO_PRO.MKDT = reader["MKDT"].ToString();
-                                        zAIKO_PRO.MKCNT = reader["MKCNT"].ToString();
-                                        zAIKO_PRO.STOCD = reader["STOCD"].ToString();
-                                        zAIKO_PRO.MODQUA = 0; // -quanty
-                                        zAIKO_PRO.MODKND = "2"; // 0
-                                        zAIKO_PRO.MODRSN = "廃棄　EK20009";
-                                        zAIKO_PRO.STOTP = "C";
-                                        zAIKO_PRO.APPDT = reader["APPDT"].ToString();
-                                        zAIKO_PRO.PROKND = "1"; // reader["PROKND"].ToString();
-                                        listZAIKO_PRO.Add(zAIKO_PRO);
+                                        if(int.Parse(reader["QUANT"].ToString()) == crtdt.QUANNTExecute)
+                                        {
+                                            ZAIKO_PROEQual zAIKO_PROEQual = new ZAIKO_PROEQual();
+                                            zAIKO_PROEQual.INS_PS = "ZAIKO300";
+                                            zAIKO_PROEQual.UP_PS = "ZAIKO300";
+                                            zAIKO_PROEQual.INS_HST = "ZAIKO300";
+                                            zAIKO_PROEQual.UP_HST = "ZAIKO300";
+
+                                            if (reader.GetValue(reader.GetOrdinal("CRTDT")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["CRTDT"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("CMDCD")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["CMDCD"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("LOTNO")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["LOTNO"].ToString();
+                                            }
+
+                                            if (reader.GetValue(reader.GetOrdinal("LIFTM")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["LIFTM"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("DIRPGNO")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["DIRPGNO"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("MKDT")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["MKDT"].ToString();
+                                            }
+                                            
+                                            string mkcntValue = reader["MKCNT"].ToString();
+                                            int mkcnt;
+                                            if (int.TryParse(mkcntValue, out mkcnt))
+                                            {
+                                                zAIKO_PROEQual.MKCNT = mkcnt;
+                                            }
+                                            else
+                                            {
+                                                zAIKO_PROEQual.MKCNT = null;
+                                            }
+
+                                            if (reader.GetValue(reader.GetOrdinal("STOCD")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["STOCD"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("MKPRC")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["MKPRC"].ToString();
+                                            }
+                                            zAIKO_PROEQual.MODQUA = 0;
+                                            zAIKO_PROEQual.MODKND = "2";
+                                            zAIKO_PROEQual.MODRSN = "廃棄　EK20009";
+                                            zAIKO_PROEQual.STOTP = "C";
+                                            if (reader.GetValue(reader.GetOrdinal("APPDT")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.CRTDT = reader["APPDT"].ToString();
+                                            }
+                                            zAIKO_PROEQual.PROKND = "1";
+                                            zAIKO_PROEQual.QUANNTExecute = crtdt.QUANNTExecute;
+                                            listZAIKO_PROEQual.Add(zAIKO_PROEQual);
+                                        }    
+                                        else if(int.Parse(reader["QUANT"].ToString()) > crtdt.QUANNTExecute)
+                                        {
+                                            ZAIKO_PROELess zAIKO_PROELess = new ZAIKO_PROELess();
+                                            zAIKO_PROELess.INS_PS = "ZAIKO300";
+                                            zAIKO_PROELess.UP_PS = "ZAIKO300";
+                                            zAIKO_PROELess.INS_HST = "ZAIKO300";
+                                            zAIKO_PROELess.UP_HST = "ZAIKO300";
+
+                                            if (reader.GetValue(reader.GetOrdinal("CRTDT")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["CRTDT"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("CMDCD")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["CMDCD"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("LOTNO")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["LOTNO"].ToString();
+                                            }
+
+                                            if (reader.GetValue(reader.GetOrdinal("LIFTM")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["LIFTM"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("DIRPGNO")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["DIRPGNO"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("MKDT")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["MKDT"].ToString();
+                                            }
+
+                                            string mkcntValue = reader["MKCNT"].ToString();
+                                            int mkcnt;
+                                            if (int.TryParse(mkcntValue, out mkcnt))
+                                            {
+                                                zAIKO_PROELess.MKCNT = mkcnt;
+                                            }
+                                            else
+                                            {
+                                                zAIKO_PROELess.MKCNT = null;
+                                            }
+
+                                            if (reader.GetValue(reader.GetOrdinal("STOCD")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["STOCD"].ToString();
+                                            }
+                                            if (reader.GetValue(reader.GetOrdinal("MKPRC")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["MKPRC"].ToString();
+                                            }
+                                            zAIKO_PROELess.MODQUA = -1;
+                                            zAIKO_PROELess.MODKND = "0";
+                                            zAIKO_PROELess.MODRSN = "廃棄　EK20009";
+                                            zAIKO_PROELess.STOTP = "3";
+                                            if (reader.GetValue(reader.GetOrdinal("APPDT")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.CRTDT = reader["APPDT"].ToString();
+                                            }
+                                            zAIKO_PROELess.PROKND = "0";
+                                            zAIKO_PROELess.QUANNTExecute = crtdt.QUANNTExecute;
+                                            listZAIKO_PROELess.Add(zAIKO_PROELess);
+                                        }    
                                     }
                                 }
                             }
                         }
+
+                        if((listZAIKO_PROEQual.Count + listZAIKO_PROELess.Count) != listCRTDTExcel.Count)
+                        {
+                            connection.Dispose();
+                            MessageBox.Show("Số lượng không trùng khớp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        if (listZAIKO_PROEQual.Count > 0)
+                        {
+                            int rowsAffected = 0;
+                            foreach (var item in listZAIKO_PROEQual)
+                            {
+                                using (SqlCommand command = new SqlCommand(sqlQueryINSERTZAIKO_PMODEQual, connection))
+                                {
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT);
+                                    command.Parameters.AddWithValue("@CMDCD", item.CMDCD);
+                                    command.Parameters.AddWithValue("@LOTNO", item.LOTNO);
+                                    command.Parameters.AddWithValue("@LIFTM", item.LIFTM);
+                                    command.Parameters.AddWithValue("@DIRPGNO", item.DIRPGNO);
+                                    command.Parameters.AddWithValue("@MKDT", item.MKDT);
+                                    command.Parameters.AddWithValue("@MKCNT", item.MKCNT);
+                                    command.Parameters.AddWithValue("@STOCD", item.STOCD);
+                                    command.Parameters.AddWithValue("@MODQUA", item.MODQUA);
+                                    command.Parameters.AddWithValue("@MODKND", item.MODKND);
+                                    command.Parameters.AddWithValue("@MODRSN", item.MODRSN);
+                                    command.Parameters.AddWithValue("@STOTP", item.STOTP);
+                                    command.Parameters.AddWithValue("@APPDT", item.APPDT);
+                                    command.Parameters.AddWithValue("@PROKND", item.PROKND);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+
+                                using (SqlCommand command = new SqlCommand(sqlQueryUPDATEZAIKO_PROEQual, connection))
+                                {
+                                    command.Parameters.AddWithValue("@STOTP", item.STOTP);
+                                    command.Parameters.AddWithValue("@PROKND", item.PROKND);
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+
+                                using (SqlCommand command = new SqlCommand(sqlQueryINSERTHAIKI_PLANQual, connection))
+                                {
+                                    decimal mathFloor = Math.Floor(Convert.ToDecimal(item.MKPRC) * Convert.ToDecimal(item.QUANNTExecute) + 0.5m);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+
+
+                                return;
+                            }
+                        }
+
                         connection.Dispose();
+
                     }
                     scope.Complete();
                 }
@@ -211,12 +396,50 @@ namespace ToolReadExcel
             }
         }
 
+        #region  Trường hợp bằng nhau
+
+        private string sqlQueryINSERTZAIKO_PMODEQual = @"
+                INSERT INTO ZAIKO_PMOD 
+                (INS_DT, UP_DT, INS_PS, UP_PS, INS_HST, UP_HST, MDDT, CRTDT, CMDCD, LOTNO, LIFTM, DIRPGNO, MKDT, MKCNT, STOCD, MODQUA, MODKND, MODRSN, STOTP, APPDT, PROKND) 
+                VALUES  
+                (GETDATE(), GETDATE(), 'ZAIKO340', 'ZAIKO340', 'V000266', 'V000266', GETDATE(), 
+                CONVERT(DATETIME, @CRTDT), @CMDCD, @LOTNO, @LIFTM, @DIRPGNO, @MKDT, @MKCNT, @STOCD, @MODQUA, @MODKND, @MODRSN, @STOTP, CONVERT(DATETIME, @APPDT), @PROKND)";
+
+        private string sqlQueryUPDATEZAIKO_PROEQual = @"
+                UPDATE ZAIKO_PRO 
+                SET 
+                    UP_DT = GETDATE(), 
+                    UP_PS = 'ZAIKO340', 
+                    UP_HST = 'V000266', 
+                    STOTP = @STOTP,
+                    PROKND = @PROKND
+                WHERE 
+                    CRTDT = CONVERT(DATETIME, @CRTDT) 
+                    AND (
+                        UP_HST = 'V000266' 
+                        OR (
+                            UP_HST <> 'V000266' 
+                            AND UP_DT <= CONVERT(DATETIME, '2023-12-07 12:30:59.300')
+                        )
+                    )";
+        // 2023-12-07 thời gian hiện tại
+        private string sqlQueryINSERTHAIKI_PLANQual = @"
+                INSERT INTO HAIKI_PLAN 
+                (INS_DT, UP_DT, INS_PS, UP_PS, INS_HST, UP_HST, HKDT, CRTDT, CMDCD, LOTNO, MKDT, MKCNT, LIFTM, DIRPGNO, STOCD, APPDT, STOTP, PROKND, MKPRC, HQUANT, SUMVAL, HAIKIRSN, WKCD, EMPNO, RELCRTDT, FILE_DT, RINNO, HKEIJYODT) 
+                VALUES 
+                (GETDATE(), GETDATE(), 'ZAIKO340', 'ZAIKO340', 'V000266', 'V000266', CONVERT(DATETIME, '2023/12/07'), 
+                CONVERT(DATETIME, @CRTDT), @CMDCD, @LOTNO, @MKDT, @MKCNT, @LIFTM, @DIRPGNO, @STOCD, 
+                CONVERT(DATETIME, @APPDT), @STOTP, '1', @MKPRC, @HQUANT, @MathFloor, @MODRSN, @COSTCD, '99999', 
+                NULL, NULL, NULL, NULL, NULL)";
+
+        #endregion
+
         public class CRTDTExcel
         {
             public string CRTDT { get; set; }
             public int QUANNTExecute { get; set; }
         }
-        public class ZAIKO_PRO
+        public class ZAIKO_PROEQual
         {
             public string INS_PS { get; set; }
             public string UP_PS { get; set; }
@@ -228,14 +451,39 @@ namespace ToolReadExcel
             public string LIFTM { get; set; }
             public string DIRPGNO { get; set; }
             public string MKDT { get; set; }
-            public string MKCNT { get; set; }
+            public int? MKCNT { get; set; }
             public string STOCD { get; set; }
+            public string MKPRC { get; set; }
             public int MODQUA { get; set; }
             public string MODKND { get; set; }
             public string MODRSN { get; set; }
             public string STOTP { get; set; }
             public string APPDT { get; set; }
             public string PROKND { get; set; }
+            public int QUANNTExecute { get; set; }
+        }
+        public class ZAIKO_PROELess
+        {
+            public string INS_PS { get; set; }
+            public string UP_PS { get; set; }
+            public string INS_HST { get; set; }
+            public string UP_HST { get; set; }
+            public string CRTDT { get; set; }
+            public string CMDCD { get; set; }
+            public string LOTNO { get; set; }
+            public string LIFTM { get; set; }
+            public string DIRPGNO { get; set; }
+            public string MKDT { get; set; }
+            public int? MKCNT { get; set; }
+            public string STOCD { get; set; }
+            public string MKPRC { get; set; }
+            public int MODQUA { get; set; }
+            public string MODKND { get; set; }
+            public string MODRSN { get; set; }
+            public string STOTP { get; set; }
+            public string APPDT { get; set; }
+            public string PROKND { get; set; }
+            public int QUANNTExecute { get; set; }
         }
     }
 }
