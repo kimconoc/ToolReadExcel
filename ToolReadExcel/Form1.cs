@@ -240,6 +240,10 @@ namespace ToolReadExcel
                                             zAIKO_PROEQual.MODQUA = 0;
                                             zAIKO_PROEQual.MODKND = "2";
                                             zAIKO_PROEQual.MODRSN = "廃棄　EK20009";
+                                            if (reader.GetValue(reader.GetOrdinal("COSTCD")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROEQual.COSTCD = reader["COSTCD"].ToString();
+                                            }
                                             zAIKO_PROEQual.STOTP = "C";
                                             if (reader.GetValue(reader.GetOrdinal("APPDT")) != DBNull.Value)
                                             {
@@ -305,6 +309,10 @@ namespace ToolReadExcel
                                             zAIKO_PROELess.MODQUA = -1;
                                             zAIKO_PROELess.MODKND = "0";
                                             zAIKO_PROELess.MODRSN = "廃棄　EK20009";
+                                            if (reader.GetValue(reader.GetOrdinal("COSTCD")) != DBNull.Value)
+                                            {
+                                                zAIKO_PROELess.COSTCD = reader["COSTCD"].ToString();
+                                            }
                                             zAIKO_PROELess.STOTP = "3";
                                             if (reader.GetValue(reader.GetOrdinal("APPDT")) != DBNull.Value)
                                             {
@@ -367,14 +375,26 @@ namespace ToolReadExcel
                                 using (SqlCommand command = new SqlCommand(sqlQueryINSERTHAIKI_PLANQual, connection))
                                 {
                                     decimal mathFloor = Math.Floor(Convert.ToDecimal(item.MKPRC) * Convert.ToDecimal(item.QUANNTExecute) + 0.5m);
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@CMDCD", item.CMDCD ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@LOTNO", item.LOTNO ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MKDT", item.MKDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MKCNT", item.MKCNT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@LIFTM", item.LIFTM ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@DIRPGNO", item.DIRPGNO ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@STOCD", item.STOCD ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@APPDT", item.APPDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@STOTP", item.STOTP ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MKPRC", item.MKPRC ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@HQUANT", item.QUANNTExecute ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MathFloor", mathFloor);
+                                    command.Parameters.AddWithValue("@MODRSN", item.MODRSN ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@COSTCD", item.COSTCD ?? (object)DBNull.Value);
 
                                     rowsAffected = command.ExecuteNonQuery();
                                     if (rowsAffected > 1)
                                         return;
                                 }
-
-
-                                return;
                             }
                         }
 
@@ -430,7 +450,7 @@ namespace ToolReadExcel
                 (GETDATE(), GETDATE(), 'ZAIKO340', 'ZAIKO340', 'V000266', 'V000266', CONVERT(DATETIME, '2023/12/07'), 
                 CONVERT(DATETIME, @CRTDT), @CMDCD, @LOTNO, @MKDT, @MKCNT, @LIFTM, @DIRPGNO, @STOCD, 
                 CONVERT(DATETIME, @APPDT), @STOTP, '1', @MKPRC, @HQUANT, @MathFloor, @MODRSN, @COSTCD, '99999', 
-                NULL, NULL, NULL, NULL, NULL)";
+                NULL, NULL, NULL, NULL)";
 
         #endregion
 
@@ -457,10 +477,11 @@ namespace ToolReadExcel
             public int? MODQUA { get; set; }
             public string MODKND { get; set; }
             public string MODRSN { get; set; }
+            public string COSTCD { get; set; }
             public string STOTP { get; set; }
             public string APPDT { get; set; }
             public string PROKND { get; set; }
-            public int QUANNTExecute { get; set; }
+            public int? QUANNTExecute { get; set; }
         }
         public class ZAIKO_PROELess
         {
@@ -480,10 +501,11 @@ namespace ToolReadExcel
             public int? MODQUA { get; set; }
             public string MODKND { get; set; }
             public string MODRSN { get; set; }
+            public string COSTCD { get; set; }
             public string STOTP { get; set; }
             public string APPDT { get; set; }
             public string PROKND { get; set; }
-            public int QUANNTExecute { get; set; }
+            public int? QUANNTExecute { get; set; }
         }
     }
 }
