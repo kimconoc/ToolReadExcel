@@ -125,7 +125,7 @@ namespace ToolReadExcel
         private void btnExecuteForwardedData_Click(object sender, EventArgs e)
         {
             strConnect.Text = "Data Source=V002345\\MSSQLSERVER01;Initial Catalog=ncpc;User ID=sa;Password=ad1234567@;Connect Timeout=30;Pooling=False;";
-            pathExcel.Text = "C:\\Users\\duc.phamvan\\Desktop\\KANRI-96\\QUANNTExecute.xlsx";
+            pathExcel.Text = "D:\\VTI_Hoya\\KANRI\\KANRI-96\\QUANNTExecute.xlsx";
             if (string.IsNullOrEmpty(strConnect.Text))
             {
                 MessageBox.Show("Empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -198,24 +198,24 @@ namespace ToolReadExcel
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("CMDCD")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["CMDCD"].ToString();
+                                                zAIKO_PROEQual.CMDCD = reader["CMDCD"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("LOTNO")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["LOTNO"].ToString();
+                                                zAIKO_PROEQual.LOTNO = reader["LOTNO"].ToString();
                                             }
 
                                             if (reader.GetValue(reader.GetOrdinal("LIFTM")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["LIFTM"].ToString();
+                                                zAIKO_PROEQual.LIFTM = reader["LIFTM"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("DIRPGNO")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["DIRPGNO"].ToString();
+                                                zAIKO_PROEQual.DIRPGNO = reader["DIRPGNO"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("MKDT")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["MKDT"].ToString();
+                                                zAIKO_PROEQual.MKDT = reader["MKDT"].ToString();
                                             }
                                             
                                             string mkcntValue = reader["MKCNT"].ToString();
@@ -231,11 +231,11 @@ namespace ToolReadExcel
 
                                             if (reader.GetValue(reader.GetOrdinal("STOCD")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["STOCD"].ToString();
+                                                zAIKO_PROEQual.STOCD = reader["STOCD"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("MKPRC")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["MKPRC"].ToString();
+                                                zAIKO_PROEQual.MKPRC = reader["MKPRC"].ToString();
                                             }
                                             zAIKO_PROEQual.MODQUA = 0;
                                             zAIKO_PROEQual.MODKND = "2";
@@ -243,7 +243,7 @@ namespace ToolReadExcel
                                             zAIKO_PROEQual.STOTP = "C";
                                             if (reader.GetValue(reader.GetOrdinal("APPDT")) != DBNull.Value)
                                             {
-                                                zAIKO_PROEQual.CRTDT = reader["APPDT"].ToString();
+                                                zAIKO_PROEQual.APPDT = reader["APPDT"].ToString();
                                             }
                                             zAIKO_PROEQual.PROKND = "1";
                                             zAIKO_PROEQual.QUANNTExecute = crtdt.QUANNTExecute;
@@ -263,24 +263,24 @@ namespace ToolReadExcel
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("CMDCD")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["CMDCD"].ToString();
+                                                zAIKO_PROELess.CMDCD = reader["CMDCD"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("LOTNO")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["LOTNO"].ToString();
+                                                zAIKO_PROELess.LOTNO = reader["LOTNO"].ToString();
                                             }
 
                                             if (reader.GetValue(reader.GetOrdinal("LIFTM")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["LIFTM"].ToString();
+                                                zAIKO_PROELess.LIFTM = reader["LIFTM"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("DIRPGNO")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["DIRPGNO"].ToString();
+                                                zAIKO_PROELess.DIRPGNO = reader["DIRPGNO"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("MKDT")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["MKDT"].ToString();
+                                                zAIKO_PROELess.MKDT = reader["MKDT"].ToString();
                                             }
 
                                             string mkcntValue = reader["MKCNT"].ToString();
@@ -296,11 +296,11 @@ namespace ToolReadExcel
 
                                             if (reader.GetValue(reader.GetOrdinal("STOCD")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["STOCD"].ToString();
+                                                zAIKO_PROELess.STOCD = reader["STOCD"].ToString();
                                             }
                                             if (reader.GetValue(reader.GetOrdinal("MKPRC")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["MKPRC"].ToString();
+                                                zAIKO_PROELess.MKPRC = reader["MKPRC"].ToString();
                                             }
                                             zAIKO_PROELess.MODQUA = -1;
                                             zAIKO_PROELess.MODKND = "0";
@@ -308,7 +308,7 @@ namespace ToolReadExcel
                                             zAIKO_PROELess.STOTP = "3";
                                             if (reader.GetValue(reader.GetOrdinal("APPDT")) != DBNull.Value)
                                             {
-                                                zAIKO_PROELess.CRTDT = reader["APPDT"].ToString();
+                                                zAIKO_PROELess.APPDT = reader["APPDT"].ToString();
                                             }
                                             zAIKO_PROELess.PROKND = "0";
                                             zAIKO_PROELess.QUANNTExecute = crtdt.QUANNTExecute;
@@ -333,20 +333,20 @@ namespace ToolReadExcel
                             {
                                 using (SqlCommand command = new SqlCommand(sqlQueryINSERTZAIKO_PMODEQual, connection))
                                 {
-                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT);
-                                    command.Parameters.AddWithValue("@CMDCD", item.CMDCD);
-                                    command.Parameters.AddWithValue("@LOTNO", item.LOTNO);
-                                    command.Parameters.AddWithValue("@LIFTM", item.LIFTM);
-                                    command.Parameters.AddWithValue("@DIRPGNO", item.DIRPGNO);
-                                    command.Parameters.AddWithValue("@MKDT", item.MKDT);
-                                    command.Parameters.AddWithValue("@MKCNT", item.MKCNT);
-                                    command.Parameters.AddWithValue("@STOCD", item.STOCD);
-                                    command.Parameters.AddWithValue("@MODQUA", item.MODQUA);
-                                    command.Parameters.AddWithValue("@MODKND", item.MODKND);
-                                    command.Parameters.AddWithValue("@MODRSN", item.MODRSN);
-                                    command.Parameters.AddWithValue("@STOTP", item.STOTP);
-                                    command.Parameters.AddWithValue("@APPDT", item.APPDT);
-                                    command.Parameters.AddWithValue("@PROKND", item.PROKND);
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@CMDCD", item.CMDCD ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@LOTNO", item.LOTNO ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@LIFTM", item.LIFTM ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@DIRPGNO", item.DIRPGNO ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MKDT", item.MKDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MKCNT", item.MKCNT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@STOCD", item.STOCD ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MODQUA", item.MODQUA ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MODKND", item.MODKND ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MODRSN", item.MODRSN ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@STOTP", item.STOTP ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@APPDT", item.APPDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@PROKND", item.PROKND ?? (object)DBNull.Value);
 
                                     rowsAffected = command.ExecuteNonQuery();
                                     if (rowsAffected > 1)
@@ -355,9 +355,9 @@ namespace ToolReadExcel
 
                                 using (SqlCommand command = new SqlCommand(sqlQueryUPDATEZAIKO_PROEQual, connection))
                                 {
-                                    command.Parameters.AddWithValue("@STOTP", item.STOTP);
-                                    command.Parameters.AddWithValue("@PROKND", item.PROKND);
-                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT);
+                                    command.Parameters.AddWithValue("@STOTP", item.STOTP ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@PROKND", item.PROKND ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
 
                                     rowsAffected = command.ExecuteNonQuery();
                                     if (rowsAffected > 1)
@@ -454,7 +454,7 @@ namespace ToolReadExcel
             public int? MKCNT { get; set; }
             public string STOCD { get; set; }
             public string MKPRC { get; set; }
-            public int MODQUA { get; set; }
+            public int? MODQUA { get; set; }
             public string MODKND { get; set; }
             public string MODRSN { get; set; }
             public string STOTP { get; set; }
@@ -477,7 +477,7 @@ namespace ToolReadExcel
             public int? MKCNT { get; set; }
             public string STOCD { get; set; }
             public string MKPRC { get; set; }
-            public int MODQUA { get; set; }
+            public int? MODQUA { get; set; }
             public string MODKND { get; set; }
             public string MODRSN { get; set; }
             public string STOTP { get; set; }
