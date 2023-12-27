@@ -402,6 +402,7 @@ namespace ToolReadExcel
 
                     }
                     scope.Complete();
+                    MessageBox.Show("Complete", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
