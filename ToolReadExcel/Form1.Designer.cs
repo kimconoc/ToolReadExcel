@@ -36,6 +36,8 @@
             this.strConnect = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnExecuteDeleteData = new System.Windows.Forms.Button();
+            this.txtProces = new System.Windows.Forms.Label();
+            this.NubProces = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExecuteForwardedData
@@ -77,11 +79,25 @@
             resources.ApplyResources(this.btnExecuteDeleteData, "btnExecuteDeleteData");
             this.btnExecuteDeleteData.Name = "btnExecuteDeleteData";
             this.btnExecuteDeleteData.UseVisualStyleBackColor = true;
+            this.btnExecuteDeleteData.Click += new System.EventHandler(this.btnExecuteDeleteData_Click);
+            // 
+            // txtProces
+            // 
+            resources.ApplyResources(this.txtProces, "txtProces");
+            this.txtProces.Name = "txtProces";
+            // 
+            // NubProces
+            // 
+            resources.ApplyResources(this.NubProces, "NubProces");
+            this.NubProces.ForeColor = System.Drawing.Color.Blue;
+            this.NubProces.Name = "NubProces";
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.NubProces);
+            this.Controls.Add(this.txtProces);
             this.Controls.Add(this.btnExecuteDeleteData);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.strConnect);
@@ -105,5 +121,7 @@
         private TextBox strConnect;
         private Label label3;
         private Button btnExecuteDeleteData;
+        private Label txtProces;
+        private Label NubProces;
     }
 }

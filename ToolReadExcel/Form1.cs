@@ -1,4 +1,5 @@
 ﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -16,6 +17,8 @@ namespace ToolReadExcel
         public Form1()
         {
             InitializeComponent();
+            txtProces.Visible= false;
+            NubProces.Visible = false;
         }
 
         #region  Phần chung
@@ -120,6 +123,8 @@ namespace ToolReadExcel
         private List<ZAIKO_PROEQual> listZAIKO_PROEQual = new List<ZAIKO_PROEQual>();
         private List<ZAIKO_PROELess> listZAIKO_PROELess = new List<ZAIKO_PROELess>();
 
+        private List<HAIKI_PLAN> listHAIKI_PLAN = new List<HAIKI_PLAN>();
+
         #endregion
 
         private void btnExecuteForwardedData_Click(object sender, EventArgs e)
@@ -134,6 +139,8 @@ namespace ToolReadExcel
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required,new System.TimeSpan(0, 15, 0)))
             {
+                txtProces.Visible = true;
+                NubProces.Visible = true;
                 try
                 {
                     listCRTDTExcel = new List<CRTDTExcel>();
@@ -337,8 +344,12 @@ namespace ToolReadExcel
                         if (listZAIKO_PROEQual.Count > 0)
                         {
                             int rowsAffected = 0;
+                            int index = 0;
                             foreach (var item in listZAIKO_PROEQual)
                             {
+                                index = index + 1;
+                                txtProces.Text = CalculateProgress(index, listZAIKO_PROEQual.Count);
+
                                 using (SqlCommand command = new SqlCommand(sqlQueryINSERTZAIKO_PMODEQual, connection))
                                 {
                                     command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
@@ -411,10 +422,209 @@ namespace ToolReadExcel
                 }
                 finally
                 {
+                    txtProces.Visible = false;
+                    NubProces.Visible = false;
                     // Giải phóng giao dịch 
                     scope.Dispose();
                 }
             }
+        }
+
+        private void btnExecuteDeleteData_Click(object sender, EventArgs e)
+        {
+            strConnect.Text = "Data Source=V002345\\MSSQLSERVER01;Initial Catalog=ncpc;User ID=sa;Password=ad1234567@;Connect Timeout=30;Pooling=False;";
+            if (string.IsNullOrEmpty(strConnect.Text))
+            {
+                MessageBox.Show("Empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new System.TimeSpan(0, 15, 0)))
+            {
+                txtProces.Visible = true;
+                NubProces.Visible = true;
+                try
+                {
+                    string connectionString = strConnect.Text;
+                    listHAIKI_PLAN = new List<HAIKI_PLAN>();
+                    // Tạo đối tượng SqlConnection
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        // Mở kết nối
+                        connection.Open();
+
+                        // Thực hiện công việc với câu truy vấn lấy list CRTDT
+                        using (SqlCommand command = new SqlCommand(sqlQuerySELECTHAIKI_PLAN, connection))
+                        {
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    HAIKI_PLAN hAIKI_PLAN = new HAIKI_PLAN();
+
+                                    if (reader.GetValue(reader.GetOrdinal("HKDT")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.HKDT = reader["HKDT"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("CRTDT")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.CRTDT = reader["CRTDT"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("CMDCD")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.CMDCD = reader["CMDCD"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("LOTNO")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.LOTNO = reader["LOTNO"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("LIFTM")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.LIFTM = reader["LIFTM"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("DIRPGNO")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.DIRPGNO = reader["DIRPGNO"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("MKDT")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.MKDT = reader["MKDT"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("MCKNT")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.MCKNT = reader["MCKNT"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("STOCD")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.STOCD = reader["STOCD"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("STOTP")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.STOTP = reader["STOTP"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("APPDT")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.APPDT = reader["APPDT"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("PROKND")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.PROKND = reader["PROKND"].ToString();
+                                    }
+                                    if (reader.GetValue(reader.GetOrdinal("HQUANT")) != DBNull.Value)
+                                    {
+                                        hAIKI_PLAN.HQUANT = int.Parse(reader["HQUANT"].ToString());
+                                    }
+
+                                    listHAIKI_PLAN.Add(hAIKI_PLAN);
+                                }
+                            }
+                        }
+
+                        if (listHAIKI_PLAN.Count > 0)
+                        {
+                            int rowsAffected = 0;
+                            int index = 0;
+                            foreach (var item in listHAIKI_PLAN)
+                            {
+                                index = index + 1;
+                                txtProces.Text = CalculateProgress(index, listZAIKO_PROEQual.Count);
+
+                                using (SqlCommand command = new SqlCommand(sqlQuerySETLOCKHAIKI_PLAN, connection))
+                                {
+                                    command.Parameters.AddWithValue("@HKDT", item.HKDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+
+                                using (SqlCommand command = new SqlCommand(sqlQueryUPDATEHAIKI_PLAN, connection))
+                                {
+                                    command.Parameters.AddWithValue("@HKDT", item.HKDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+
+                                using (SqlCommand command = new SqlCommand(sqlQueryINSERTZAIKO_PMOD, connection))
+                                {
+                                    int cASEMinusQuant = 0 - item.HQUANT;
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@CMDCD", item.CMDCD ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@LOTNO", item.LOTNO ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@LIFTM", item.LIFTM ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@DIRPGNO", item.DIRPGNO ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MKDT", item.MKDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MCKNT", item.MCKNT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@STOCD", item.STOCD ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@HQUANT", cASEMinusQuant);
+                                    command.Parameters.AddWithValue("@STOTP", item.STOTP ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@APPDT", item.APPDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@PROKND", item.PROKND ?? (object)DBNull.Value);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+
+                                using (SqlCommand command = new SqlCommand(sqlQueryINSERTZAIKO_TRAN, connection))
+                                {
+                                    string getStoCrtDT = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                                    command.Parameters.AddWithValue("@GetStoCrtDT", getStoCrtDT);
+                                    command.Parameters.AddWithValue("@CRTDT1", item.CRTDT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@HQUANT", item.HQUANT);
+                                    command.Parameters.AddWithValue("@CRTDT2", item.CRTDT ?? (object)DBNull.Value);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+
+                                using (SqlCommand command = new SqlCommand(sqlQueryDELETEZAIKO_PRO, connection))
+                                {
+
+                                    command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
+
+                                    rowsAffected = command.ExecuteNonQuery();
+                                    if (rowsAffected > 1)
+                                        return;
+                                }
+                            }
+                        }
+
+                        connection.Dispose();
+
+                    }
+                    scope.Complete();
+                    MessageBox.Show("Complete", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                finally
+                {
+                    txtProces.Visible = false;
+                    NubProces.Visible = false;
+                    // Giải phóng giao dịch 
+                    scope.Dispose();
+                }
+            }
+        }
+
+        private string CalculateProgress(int numerator, int denominator)
+        {
+            double ratio = (double)numerator / denominator;
+            double percentage = ratio * 100;
+
+            string result = $"{percentage} %";
+
+            return result;
         }
 
         #region  Trường hợp bằng nhau
@@ -452,6 +662,118 @@ namespace ToolReadExcel
                 CONVERT(DATETIME, @CRTDT), @CMDCD, @LOTNO, @MKDT, @MKCNT, @LIFTM, @DIRPGNO, @STOCD, 
                 CONVERT(DATETIME, @APPDT), @STOTP, '1', @MKPRC, @HQUANT, @MathFloor, @MODRSN, @COSTCD, '99999', 
                 NULL, NULL, NULL, NULL)";
+
+        #endregion
+
+        #region  Delete
+
+        string sqlQuerySELECTHAIKI_PLAN = @"
+                SELECT
+                    A.RINNO,
+                    A.CMDCD,
+                    B.CMDNMK,
+                    A.LOTNO,
+                    CONVERT(VARCHAR(10), A.MKDT, 111) AS MKDT,
+                    A.MKCNT,
+                    CONVERT(VARCHAR(10), A.LIFTM, 111) AS LIFTM,
+                    A.DIRPGNO,
+                    A.HQUANT,
+                    A.MKPRC,
+                    A.SUMVAL,
+                    A.HAIKIRSN,
+                    C.DOBUN2,
+                    CONVERT(VARCHAR(10), A.CRTDT, 111) + ' ' + CONVERT(VARCHAR(8), A.CRTDT, 8) AS CRTDT,
+                    A.STOCD,
+                    A.FILE_DT,
+                    CONVERT(VARCHAR(10), A.HKEIJYODT, 111) AS HKEIJYODT,
+                    CONVERT(VARCHAR(10), A.HKDT, 111) AS HKDT,
+                    CONVERT(VARCHAR(10), A.RELCRTDT, 111) + ' ' + CONVERT(VARCHAR(8), A.RELCRTDT, 8) AS RELCRTDT,
+                    A.STOTP,
+                    CONVERT(VARCHAR(10), A.APPDT, 111) AS APPDT,
+                    A.PROKND,
+                    D.JANFLG,
+                    D.JANCD
+                FROM
+                    HAIKI_PLAN A
+                INNER JOIN
+                    HSYOHIN_MST B ON B.CMDCD = A.CMDCD
+                INNER JOIN
+                    LSYOHIN_MST C ON C.CMDCD = A.CMDCD
+                LEFT JOIN
+                    ZAIKO_PRO D ON D.CRTDT = A.CRTDT
+                WHERE
+                    (A.CMDCD IN ('2080030', '2080031', '2080032', '2080033', '2080034', '2080035', '2080036', '2080037', '2080038', '2080039', '2080042', '2080043', '2080044', '2080048', '2080049', '2080050', '2080053', '2080056', '2080064', '2081044')) 
+                    AND A.STOCD IN ('0012') 
+                    AND A.HKEIJYODT IS NULL
+                ORDER BY
+                    A.CMDCD, A.MKDT, A.MKCNT, A.LOTNO, A.RINNO, A.HKEIJYODT;";
+
+        string sqlQuerySETLOCKHAIKI_PLAN = @"
+                SET LOCK_TIMEOUT 0
+                SELECT CONVERT(VARCHAR(19), A.UP_DT, 20) AS UP_DT_A, 
+                       CONVERT(VARCHAR(19), B.UP_DT, 20) AS UP_DT_B, 
+                       CONVERT(VARCHAR(19), C.UP_DT, 20) AS UP_DT_C
+                FROM HAIKI_PLAN A WITH (UPDLOCK) 
+                INNER JOIN ZAIKO_PRO B WITH (UPDLOCK) ON B.CRTDT = A.CRTDT 
+                LEFT OUTER JOIN ZAIKO_PRO C WITH (UPDLOCK) ON C.CRTDT = A.RELCRTDT 
+                WHERE A.HKDT = CONVERT(DATETIME, @HKDT) 
+                AND A.CRTDT = CONVERT(DATETIME, @CRTD);";
+
+
+        string sqlQueryUPDATEHAIKI_PLAN = @"
+                UPDATE HAIKI_PLAN
+                SET UP_DT = GETDATE(),
+                    UP_PS = 'ZAIKOE00',
+                    UP_HST = 'V000266',
+                    RINNO = 'EK20001',
+                    HKEIJYODT = CONVERT(DATETIME, '2023/12/07')
+                WHERE HKDT = CONVERT(DATETIME, @HKDT) 
+                  AND CRTDT = CONVERT(DATETIME, @CRTD)
+                  AND ((UP_HST = 'V000266')       
+                       OR       
+                       (UP_HST <> 'V000266' AND UP_DT <= CONVERT(DATETIME, '2023-12-07 12:30:59.300')))
+                  AND RINNO IS NULL 
+                  AND HKEIJYODT IS NULL;";
+
+        string sqlQueryINSERTZAIKO_PMOD = @"
+                INSERT INTO ZAIKO_PMOD (INS_DT, UP_DT, INS_PS, UP_PS, INS_HST, UP_HST, MDDT, CRTDT, CMDCD, LOTNO, LIFTM, DIRPGNO, MKDT, MKCNT, STOCD, MODQUA, MODKND, MODRSN, STOTP, APPDT, PROKND)
+                VALUES  (GETDATE(), GETDATE(), 'ZAIKOE00', 'ZAIKOE00', 'V000266', 'V000266', GETDATE(), 
+                CONVERT(DATETIME, @CRTDT),
+                @CMDCD, 
+                @LOTNO, 
+                @LIFTM, 
+                @DIRPGNO, 
+                @MKDT, 
+                @MCKNT, 
+                @STOCD, 
+                @HQuant,
+                '0', 
+                '廃棄計上',
+                @STOTP, 
+                CONVERT(DATETIME, @APPDT), 
+                @PROKND);";
+
+        string sqlQueryINSERTZAIKO_TRAN = @"
+                INSERT INTO ZAIKO_TRAN (INS_DT, UP_DT, INS_PS, UP_PS, INS_HST, UP_HST, PROCDT, CRTDT, CMDCD, LOTNO, MKDT, DIRPGNO, STOCD, QUANT, PROCKND, INOUT)
+                SELECT 
+                    GETDATE(), GETDATE(), 'ZAIKOE00', 'ZAIKOE00', 'V000266', 'V000266', 
+                    CONVERT(DATETIME, @GetStoCrtDT), 
+                    CONVERT(DATETIME, @CRTDT1),
+                    CMDCD, 
+                    LOTNO, 
+                    MKDT, 
+                    DIRPGNO, 
+                    STOCD, 
+                    @HQUANT, 
+                    '6', 
+                    '0' 
+                FROM ZAIKO_PRO 
+                WHERE CRTDT = CONVERT(DATETIME, @CRTDT2);";
+
+        string sqlQueryDELETEZAIKO_PRO = @"
+                DELETE FROM ZAIKO_PRO 
+                WHERE CRTDT = CONVERT(DATETIME, @CRTDT);";
+
 
         #endregion
 
@@ -508,5 +830,24 @@ namespace ToolReadExcel
             public string PROKND { get; set; }
             public int? QUANNTExecute { get; set; }
         }
+
+        public class HAIKI_PLAN
+        {
+            public string HKDT { get; set; }
+            public string CRTDT { get; set; }
+            public string CMDCD { get; set; }
+            public string LOTNO { get; set; }
+            public string LIFTM { get; set; }
+            public string DIRPGNO { get; set; }
+            public string MKDT { get; set; }
+            public string MCKNT { get; set; }
+            public string STOCD { get; set; }
+            public string STOTP { get; set; }
+            public string APPDT { get; set; }
+            public string PROKND { get; set; }
+            public int HQUANT { get; set; }
+
+        }
+
     }
 }
