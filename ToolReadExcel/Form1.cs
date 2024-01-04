@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Transactions;
 using System.Windows.Forms;
+using System.Windows.Input;
 using static System.Formats.Asn1.AsnWriter;
 using static ToolReadExcel.Form1;
 
@@ -17,8 +18,6 @@ namespace ToolReadExcel
         public Form1()
         {
             InitializeComponent();
-            txtProces.Visible= false;
-            NubProces.Visible = false;
         }
 
         #region  Phần chung
@@ -139,8 +138,6 @@ namespace ToolReadExcel
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required,new System.TimeSpan(0, 15, 0)))
             {
-                txtProces.Visible = true;
-                NubProces.Visible = true;
                 try
                 {
                     listCRTDTExcel = new List<CRTDTExcel>();
@@ -156,6 +153,7 @@ namespace ToolReadExcel
                         // Thực hiện công việc với câu truy vấn lấy list CRTDT
                         using (SqlCommand command = new SqlCommand(sqlQueryGetSpreaData, connection))
                         {
+                            command.CommandTimeout = 120;
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
                                 while (reader.Read())
@@ -344,12 +342,8 @@ namespace ToolReadExcel
                         if (listZAIKO_PROEQual.Count > 0)
                         {
                             int rowsAffected = 0;
-                            int index = 0;
                             foreach (var item in listZAIKO_PROEQual)
                             {
-                                index = index + 1;
-                                txtProces.Text = CalculateProgress(index, listZAIKO_PROEQual.Count);
-
                                 using (SqlCommand command = new SqlCommand(sqlQueryINSERTZAIKO_PMODEQual, connection))
                                 {
                                     command.Parameters.AddWithValue("@CRTDT", item.CRTDT ?? (object)DBNull.Value);
@@ -422,8 +416,6 @@ namespace ToolReadExcel
                 }
                 finally
                 {
-                    txtProces.Visible = false;
-                    NubProces.Visible = false;
                     // Giải phóng giao dịch 
                     scope.Dispose();
                 }
@@ -441,8 +433,6 @@ namespace ToolReadExcel
 
             using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new System.TimeSpan(0, 15, 0)))
             {
-                txtProces.Visible = true;
-                NubProces.Visible = true;
                 try
                 {
                     string connectionString = strConnect.Text;
@@ -523,12 +513,8 @@ namespace ToolReadExcel
                         if (listHAIKI_PLAN.Count > 0)
                         {
                             int rowsAffected = 0;
-                            int index = 0;
                             foreach (var item in listHAIKI_PLAN)
                             {
-                                index = index + 1;
-                                txtProces.Text = CalculateProgress(index, listZAIKO_PROEQual.Count);
-
                                 using (SqlCommand command = new SqlCommand(sqlQuerySETLOCKHAIKI_PLAN, connection))
                                 {
                                     command.Parameters.AddWithValue("@HKDT", item.HKDT ?? (object)DBNull.Value);
@@ -609,8 +595,6 @@ namespace ToolReadExcel
                 }
                 finally
                 {
-                    txtProces.Visible = false;
-                    NubProces.Visible = false;
                     // Giải phóng giao dịch 
                     scope.Dispose();
                 }
@@ -622,7 +606,7 @@ namespace ToolReadExcel
             double ratio = (double)numerator / denominator;
             double percentage = ratio * 100;
 
-            string result = $"{percentage} %";
+            string result = $"{percentage:F3} %";
 
             return result;
         }

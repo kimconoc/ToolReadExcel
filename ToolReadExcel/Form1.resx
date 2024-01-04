@@ -62,7 +62,7 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="btnExecuteForwardedData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 151</value>
+    <value>221, 140</value>
   </data>
   <data name="btnExecuteForwardedData.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 33</value>
@@ -84,13 +84,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnExecuteForwardedData.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 51</value>
+    <value>37, 63</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 15</value>
@@ -111,13 +111,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 81</value>
+    <value>37, 93</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 15</value>
@@ -138,10 +138,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="pathExcel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 48</value>
+    <value>128, 60</value>
   </data>
   <data name="pathExcel.Size" type="System.Drawing.Size, System.Drawing">
     <value>647, 23</value>
@@ -159,10 +159,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pathExcel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="strConnect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 77</value>
+    <value>128, 89</value>
   </data>
   <data name="strConnect.Size" type="System.Drawing.Size, System.Drawing">
     <value>647, 23</value>
@@ -180,7 +180,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;strConnect.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -210,7 +210,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="btnExecuteDeleteData.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt</value>
@@ -220,7 +220,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnExecuteDeleteData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 151</value>
+    <value>429, 140</value>
   </data>
   <data name="btnExecuteDeleteData.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 33</value>
@@ -241,69 +241,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnExecuteDeleteData.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtProces.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtProces.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt</value>
-  </data>
-  <data name="txtProces.Location" type="System.Drawing.Point, System.Drawing">
-    <value>380, 106</value>
-  </data>
-  <data name="txtProces.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 20</value>
-  </data>
-  <data name="txtProces.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="txtProces.Text" xml:space="preserve">
-    <value>processing</value>
-  </data>
-  <data name="&gt;&gt;txtProces.Name" xml:space="preserve">
-    <value>txtProces</value>
-  </data>
-  <data name="&gt;&gt;txtProces.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtProces.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtProces.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="NubProces.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="NubProces.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt</value>
-  </data>
-  <data name="NubProces.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="NubProces.Location" type="System.Drawing.Point, System.Drawing">
-    <value>402, 126</value>
-  </data>
-  <data name="NubProces.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 20</value>
-  </data>
-  <data name="NubProces.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="NubProces.Text" xml:space="preserve">
-    <value>00 %</value>
-  </data>
-  <data name="&gt;&gt;NubProces.Name" xml:space="preserve">
-    <value>NubProces</value>
-  </data>
-  <data name="&gt;&gt;NubProces.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NubProces.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;NubProces.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
