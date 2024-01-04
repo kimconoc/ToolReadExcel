@@ -480,9 +480,9 @@ namespace ToolReadExcel
                                     {
                                         hAIKI_PLAN.MKDT = reader["MKDT"].ToString();
                                     }
-                                    if (reader.GetValue(reader.GetOrdinal("MCKNT")) != DBNull.Value)
+                                    if (reader.GetValue(reader.GetOrdinal("MKCNT")) != DBNull.Value)
                                     {
-                                        hAIKI_PLAN.MCKNT = reader["MCKNT"].ToString();
+                                        hAIKI_PLAN.MKCNT = reader["MKCNT"].ToString();
                                     }
                                     if (reader.GetValue(reader.GetOrdinal("STOCD")) != DBNull.Value)
                                     {
@@ -544,7 +544,7 @@ namespace ToolReadExcel
                                     command.Parameters.AddWithValue("@LIFTM", item.LIFTM ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@DIRPGNO", item.DIRPGNO ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@MKDT", item.MKDT ?? (object)DBNull.Value);
-                                    command.Parameters.AddWithValue("@MCKNT", item.MCKNT ?? (object)DBNull.Value);
+                                    command.Parameters.AddWithValue("@MKCNT", item.MKCNT ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@STOCD", item.STOCD ?? (object)DBNull.Value);
                                     command.Parameters.AddWithValue("@HQUANT", cASEMinusQuant);
                                     command.Parameters.AddWithValue("@STOTP", item.STOTP ?? (object)DBNull.Value);
@@ -634,15 +634,15 @@ namespace ToolReadExcel
                         UP_HST = 'V000266' 
                         OR (
                             UP_HST <> 'V000266' 
-                            AND UP_DT <= CONVERT(DATETIME, '2023-12-07 12:30:59.300')
+                            AND UP_DT <= CONVERT(DATETIME, '2024-01-30 12:30:59.300')
                         )
                     )";
-        // 2023-12-07 thời gian hiện tại
+        // 2024-01-30 thời gian hiện tại
         private string sqlQueryINSERTHAIKI_PLANQual = @"
                 INSERT INTO HAIKI_PLAN 
                 (INS_DT, UP_DT, INS_PS, UP_PS, INS_HST, UP_HST, HKDT, CRTDT, CMDCD, LOTNO, MKDT, MKCNT, LIFTM, DIRPGNO, STOCD, APPDT, STOTP, PROKND, MKPRC, HQUANT, SUMVAL, HAIKIRSN, WKCD, EMPNO, RELCRTDT, FILE_DT, RINNO, HKEIJYODT) 
                 VALUES 
-                (GETDATE(), GETDATE(), 'ZAIKO340', 'ZAIKO340', 'V000266', 'V000266', CONVERT(DATETIME, '2023/12/07'), 
+                (GETDATE(), GETDATE(), 'ZAIKO340', 'ZAIKO340', 'V000266', 'V000266', CONVERT(DATETIME, '2024/01/30'), 
                 CONVERT(DATETIME, @CRTDT), @CMDCD, @LOTNO, @MKDT, @MKCNT, @LIFTM, @DIRPGNO, @STOCD, 
                 CONVERT(DATETIME, @APPDT), @STOTP, '1', @MKPRC, @HQUANT, @MathFloor, @MODRSN, @COSTCD, '99999', 
                 NULL, NULL, NULL, NULL)";
@@ -701,7 +701,7 @@ namespace ToolReadExcel
                 INNER JOIN ZAIKO_PRO B WITH (UPDLOCK) ON B.CRTDT = A.CRTDT 
                 LEFT OUTER JOIN ZAIKO_PRO C WITH (UPDLOCK) ON C.CRTDT = A.RELCRTDT 
                 WHERE A.HKDT = CONVERT(DATETIME, @HKDT) 
-                AND A.CRTDT = CONVERT(DATETIME, @CRTD);";
+                AND A.CRTDT = CONVERT(DATETIME, @CRTDT);";
 
 
         string sqlQueryUPDATEHAIKI_PLAN = @"
@@ -710,12 +710,12 @@ namespace ToolReadExcel
                     UP_PS = 'ZAIKOE00',
                     UP_HST = 'V000266',
                     RINNO = 'EK20001',
-                    HKEIJYODT = CONVERT(DATETIME, '2023/12/07')
+                    HKEIJYODT = CONVERT(DATETIME, '2024/01/30')
                 WHERE HKDT = CONVERT(DATETIME, @HKDT) 
-                  AND CRTDT = CONVERT(DATETIME, @CRTD)
+                  AND CRTDT = CONVERT(DATETIME, @CRTDT)
                   AND ((UP_HST = 'V000266')       
                        OR       
-                       (UP_HST <> 'V000266' AND UP_DT <= CONVERT(DATETIME, '2023-12-07 12:30:59.300')))
+                       (UP_HST <> 'V000266' AND UP_DT <= CONVERT(DATETIME, '2024-01-30 12:30:59.300')))
                   AND RINNO IS NULL 
                   AND HKEIJYODT IS NULL;";
 
@@ -728,7 +728,7 @@ namespace ToolReadExcel
                 @LIFTM, 
                 @DIRPGNO, 
                 @MKDT, 
-                @MCKNT, 
+                @MKCNT, 
                 @STOCD, 
                 @HQuant,
                 '0', 
@@ -824,7 +824,7 @@ namespace ToolReadExcel
             public string LIFTM { get; set; }
             public string DIRPGNO { get; set; }
             public string MKDT { get; set; }
-            public string MCKNT { get; set; }
+            public string MKCNT { get; set; }
             public string STOCD { get; set; }
             public string STOTP { get; set; }
             public string APPDT { get; set; }
